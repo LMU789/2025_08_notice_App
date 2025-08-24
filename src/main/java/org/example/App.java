@@ -24,13 +24,13 @@ public class App {
         while (true) {
             System.out.print("명령어) ");
             String cmd = sc.nextLine().trim(); // trim : 공백 제거
-            System.out.println("받은 명령어 : " +  cmd); // 받은 명령어 확인
+            System.out.println("받은 명령어 : " + cmd); // 받은 명령어 확인
 
             //종료
-            if(cmd.equals("exit")) {
+            if (cmd.equals("exit")) {
                 System.out.println("== 명언 앱 종료 ==");
                 break;
-            } else if(cmd.equals("add")) {
+            } else if (cmd.equals("add")) {
                 System.out.print("명언 : ");
                 String body = sc.nextLine().trim();
                 System.out.print("저자 : ");
@@ -41,16 +41,21 @@ public class App {
 
                 motivationList.add(newMotiy);
 
-                System.out.println( lastId + "번 명언이 등록되었습니다.");
-            } else if(cmd.equals("list")) {
+                System.out.println(lastId + "번 명언이 등록되었습니다.");
+            } else if (cmd.equals("list")) {
                 System.out.println("=".repeat(30));
-                System.out.println("번호      /      저자     /      명언");
-                if(motivationList.size() == 0) {
+                System.out.println("번호      /      명언     /      저자");
+                if (motivationList.size() == 0) {
                     System.out.println("등록된 명언이 없습니다.");
                 } else {
                     Collections.reverse(motivationList);
-                    for(Motivation m : motivationList) {
-                        System.out.println(m.getId() + "             " + m.getBody() + "            " + m.getAuthor());
+                    for (Motivation m : motivationList) {
+                        if(m.getBody().length() < 5) {
+                            System.out.println(" " + m.getId() + "               " + m.getBody() + "             " + m.getAuthor());
+                        } else {
+                            System.out.println(" " + m.getId() + "               " + m.getBody().substring(0,5) + "             " + m.getAuthor());
+
+                        }
                     }
 
                     // list 내림차순
@@ -59,9 +64,10 @@ public class App {
 //                    }
                 }
             } else if (cmd.equals("delete")) {
+                System.out.print("삭제할 번호 : ");
 
 
-                System.out.println( lastId + "번 명언이 삭제되었습니다.");
+                System.out.println(lastId + "번 명언이 삭제되었습니다.");
             } else {
                 System.out.println("사용할수 없는 명령어 입니다.");
             }

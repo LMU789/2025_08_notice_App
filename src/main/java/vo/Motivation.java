@@ -2,9 +2,9 @@ package vo;
 
 public class Motivation {
 
-    int id = 0;
-    String body = null;
-    String author = null;
+    int id = 0; // 번호
+    String body = null; // 명언
+    String author = null; //저자
 
 
     public Motivation(int id, String body, String author) {
