@@ -57,7 +57,6 @@ public class MotivationController {
         }
 
         int id = -1;
-
         try {
             id = Integer.parseInt(cmd.split(" ")[1]);
         } catch (NumberFormatException e) {
@@ -109,22 +108,12 @@ public class MotivationController {
 
 
         Motivation foundMotvation = null;
-//        for(int i = 0; i < motivationList.size(); i++) {
-//            foundMotvation = motivationList.get(i);
-//            if(foundMotvation.getId() == id) {
-//                System.out.println(foundMotvation.toString());
-//                foundIndex = i;
-//            }
-//        }
         for(Motivation m : motivationList) {
-            if(foundMotvation.getId() == id) {
+            if(m.getId() == id) {
                 foundMotvation = m;
                 break;
             }
         }
-
-        System.out.println("id : " + id);
-        System.out.println("foundMotvation : " + foundMotvation.toString());
 
         if(foundMotvation == null) {
             System.out.println(id + "번 글은 없습니다.");
@@ -134,6 +123,50 @@ public class MotivationController {
         motivationList.remove(foundMotvation);
         System.out.println(id + "번 글이 삭제되었습니다.");
 
+
+    }
+
+    public void update(String cmd) {
+
+        Rq rq = new Rq(cmd);
+
+        if(rq.getParams().get("id") == null) {
+            System.out.println("update?id=값 형식으로 작성하십시오.");
+            return;
+        }
+
+        int id = -1;
+        try {
+            id = Integer.parseInt(rq.getParams().get("id"));
+
+        } catch (NumberFormatException e){
+            System.out.println("id=숫자 여야 합니다.");
+            return;
+        }
+
+        Motivation foundMotvation = null;
+        for(Motivation m : motivationList) {
+            if(m.getId() == id) {
+                foundMotvation = m;
+                break;
+            }
+        }
+
+        if(foundMotvation == null) {
+            System.out.println(id + "번 글은 없습니다.");
+            return;
+        }
+
+        System.out.println("기존 명언 : " + foundMotvation.getBody());
+        System.out.println("기존 저자 : " + foundMotvation.getAuthor());
+        System.out.print("변경할 명언 : ");
+        String newBody = Container.getScanner().nextLine().trim();
+        System.out.print("변경할 저자 : ");
+        String newAuthor = Container.getScanner().nextLine().trim();
+
+        foundMotvation.setBody(newBody);
+        foundMotvation.setAuthor(newAuthor);
+        System.out.println(id + "번 글이 업데이트되었습니다.");
 
     }
 }

@@ -29,8 +29,11 @@ public class App {
                 motivationController.list();
             }
             else if (cmd.startsWith("delete")) { // 삭제
-                motivationController.delete(cmd);
-//                motivationController.newDelete(cmd);
+//                motivationController.delete(cmd);
+                motivationController.newDelete(cmd);
+            }
+            else if (cmd.startsWith("update")) {
+                motivationController.update(cmd);
             }
             else {
                 System.out.println("사용할수 없는 명령어 입니다.");

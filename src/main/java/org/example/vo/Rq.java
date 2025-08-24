@@ -13,7 +13,11 @@ public class Rq {
     public Rq(String cmd) {
         this.cmd = cmd;
 
-        String[] cmdBits = cmd.split("\\?"); //delete 와 id=1,
+        String[] cmdBits = cmd.split("\\?");
+
+        if(cmdBits.length < 2) {
+            return;
+        }
 
         actionMethod = cmdBits[0];
         String[] paramBits;
@@ -25,11 +29,6 @@ public class Rq {
         String key = paramBits[0];
         String value = paramBits[1];
         params.put(key, value);
-
-        System.out.println("actionMethod : " + actionMethod);
-        System.out.println("paramBits[0] : " + paramBits[0]);
-        System.out.println("paramBits[1] : " + paramBits[1]);
-        System.out.println("params : " + params);
 
     }
 
