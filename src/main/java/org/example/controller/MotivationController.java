@@ -1,11 +1,9 @@
 package org.example.controller;
 
 import org.example.vo.Motivation;
+import org.example.vo.Rq;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class MotivationController {
 
@@ -91,6 +89,53 @@ public class MotivationController {
 
         motivationList.remove(foundIndex);
         System.out.println(id + "번 글이 삭제되었습니다.");
+
+    }
+
+    public void newDelete(String cmd){
+
+        Rq rq = new Rq(cmd);
+
+        if(rq.getParams().get("id") == null) {
+            System.out.println("delete?id=값 형식으로 작성하십시오.");
+             return;
+        }
+        int id = -1;
+        try {
+            id = Integer.parseInt(rq.getParams().get("id"));
+
+        } catch (NumberFormatException e){
+            System.out.println("id=숫자 여야 합니다.");
+            return;
+        }
+
+
+        Motivation foundMotvation = null;
+//        for(int i = 0; i < motivationList.size(); i++) {
+//            foundMotvation = motivationList.get(i);
+//            if(foundMotvation.getId() == id) {
+//                System.out.println(foundMotvation.toString());
+//                foundIndex = i;
+//            }
+//        }
+        for(Motivation m : motivationList) {
+            if(foundMotvation.getId() == id) {
+                foundMotvation = m;
+                break;
+            }
+        }
+
+        System.out.println("id : " + id);
+        System.out.println("foundMotvation : " + foundMotvation.toString());
+
+        if(foundMotvation == null) {
+            System.out.println(id + "번 글은 없습니다.");
+            return;
+        }
+
+        motivationList.remove(foundMotvation);
+        System.out.println(id + "번 글이 삭제되었습니다.");
+
 
     }
 }

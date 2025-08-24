@@ -40,8 +40,9 @@ public class App {
             else if (cmd.equals("list")) { // 목록
                 motivationController.list();
             }
-            else if (cmd.startsWith("delete")) { // 강사님 풀이
-                motivationController.delete(cmd);
+            else if (cmd.startsWith("delete")) { // 삭제
+//                motivationController.delete(cmd);
+                motivationController.newDelete(cmd);
             }
             else {
                 System.out.println("사용할수 없는 명령어 입니다.");
