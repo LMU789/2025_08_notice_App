@@ -2,7 +2,6 @@ package org.example.vo;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Scanner;
 
 public class Rq {
 
