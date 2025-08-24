@@ -33,12 +33,17 @@ public class App {
             if (cmd.equals("exit")) { //종료
                 systemController.exit();
                 break;
-            } else if (cmd.equals("add")) { // 등록
+            }
+            else if (cmd.equals("add")) { // 등록
                 motivationController.add();
-            } else if (cmd.equals("list")) { // 목록
+            }
+            else if (cmd.equals("list")) { // 목록
                 motivationController.list();
-
-            }  else {
+            }
+            else if (cmd.startsWith("delete")) { // 강사님 풀이
+                motivationController.delete(cmd);
+            }
+            else {
                 System.out.println("사용할수 없는 명령어 입니다.");
             }
 

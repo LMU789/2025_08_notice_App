@@ -40,18 +40,57 @@ public class MotivationController {
         } else {
             Collections.reverse(motivationList);
             for (Motivation m : motivationList) {
-                if(m.getBody().length() < 5) {
+                if (m.getBody().length() < 5) {
                     System.out.println(" " + m.getId() + "               " + m.getBody() + "            " + m.getAuthor());
                 } else {
-                    System.out.println(" " + m.getId() + "               " + m.getBody().substring(0,5) + "            " + m.getAuthor());
+                    System.out.println(" " + m.getId() + "               " + m.getBody().substring(0, 5) + "            " + m.getAuthor());
 
                 }
             }
 
-            // list 내림차순
-//                    for(int i = motivationList.size() -1; i >=0; i--) {
-//                        System.out.println(motivationList.get(i).getId() + "             " + motivationList.get(i).getBody() + "            " + motivationList.get(i).getAuthor());
-//                    }
+//             list 내림차순
+//            for(int i = motivationList.size() -1; i >=0; i--) {
+//                System.out.println(motivationList.get(i).getId() + "             " + motivationList.get(i).getBody() + "            " + motivationList.get(i).getAuthor());
+//            }
         }
+    }
+
+    public void delete(String cmd) {
+
+        if(cmd.split(" ").length > 2) {
+            System.out.println("delete 뒤에는 숫자만 하나만 입력 가능합니다.");
+            return;
+        }
+
+        int id = -1;
+
+        try {
+            id = Integer.parseInt(cmd.split(" ")[1]);
+        } catch (NumberFormatException e) {
+            System.out.println("delete 뒤에는 숫자만 입력 가능합니다.");
+            return;
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("delete 한칸 띄고 숫자 입력하십시오.");
+            return;
+        }
+
+        int foundIndex = -1;
+        Motivation foundMotvation = null;
+        for(int i = 0; i < motivationList.size(); i++) {
+            foundMotvation = motivationList.get(i);
+            if(foundMotvation.getId() == id) {
+                System.out.println(foundMotvation.toString());
+                foundIndex = i;
+            }
+        }
+
+        if(foundMotvation == null) {
+            System.out.println(id + "번 글은 없습니다.");
+            return;
+        }
+
+        motivationList.remove(foundIndex);
+        System.out.println(id + "번 글이 삭제되었습니다.");
+
     }
 }

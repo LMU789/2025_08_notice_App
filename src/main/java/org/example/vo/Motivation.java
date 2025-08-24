@@ -13,6 +13,15 @@ public class Motivation {
         this.author = author;
     }
 
+    @Override
+    public String toString() {
+        return "Motivation{" +
+                "id=" + id +
+                ", body='" + body + '\'' +
+                ", author='" + author + '\'' +
+                '}';
+    }
+
     public int getId() {
         return id;
     }
