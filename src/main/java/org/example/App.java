@@ -58,6 +58,10 @@ public class App {
 //                        System.out.println(motivationList.get(i).getId() + "             " + motivationList.get(i).getBody() + "            " + motivationList.get(i).getAuthor());
 //                    }
                 }
+            } else if (cmd.equals("delete")) {
+
+
+                System.out.println( lastId + "번 명언이 삭제되었습니다.");
             } else {
                 System.out.println("사용할수 없는 명령어 입니다.");
             }
